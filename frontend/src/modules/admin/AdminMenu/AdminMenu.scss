@@ -1,0 +1,25 @@
+
+@import "../../../constants";
+
+ul.admin-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    a {
+      padding: 6px 8px;
+      display: block;
+      background: $grey-block-background;
+      border: 1px solid $grey-block-background;
+      color: $grey-text-color;
+      text-decoration: none;
+      &:hover, &.active {
+        border: 1px solid $grey-text-color;
+      }
+
+    }
+    &.secondary {
+      font-style: italic;
+    }
+  }
+}

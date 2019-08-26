@@ -39,3 +39,11 @@ const cpUpload = upload.fields([
 
 photosRouter.post('/upload', photosValidation, cpUpload, PhotosController.photo);
 
+photosRouter.get('/all', photosValidation, PhotosController.all);
+
+photosRouter.get('/photo/:id', photosValidation, PhotosController.photoById);
+
+photosRouter.post('/update', photosValidation, PhotosController.updateOne);
+
+photosRouter.delete('/photo/:id', photosValidation, PhotosController.deletePhoto);
+

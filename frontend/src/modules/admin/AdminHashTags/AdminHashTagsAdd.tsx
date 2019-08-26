@@ -1,24 +1,24 @@
 import React, {useState} from 'react';
-import {addHashTag} from "../../../store/admin/actions";
-import AdminHashTagsAddStatus from "./AdminHashTagsAddStatus";
 import {useDispatch, useSelector} from "react-redux";
+import {getHashtagsState} from "../../../store/selectors";
+import {addHashTag} from "../../../store/hashtags/actions";
 
 import './AdminHashTags.scss';
-import {getAdminHashtags} from "../../../store/selectors";
+import LoadingText from "../../shared/LoadingText";
+
+
 
 const AdminHashTagsAdd: React.FC = () => {
-
     const [form, setForm] = useState({tag: ''});
     const dispatch = useDispatch();
-
-    const {addLoading} = useSelector(getAdminHashtags);
-
+    const {add} = useSelector(getHashtagsState);
     const handleChange = (name: string, value: string) => {
         setForm(prevState => ({
             ...prevState,
             [name]: value
         }));
     };
+
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -28,7 +28,7 @@ const AdminHashTagsAdd: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit} className="admin-hashtags-add">
-            <AdminHashTagsAddStatus />
+            <LoadingText status={add} />
             <div className="field-input">
                 <input
                     className="form-input"
@@ -42,8 +42,8 @@ const AdminHashTagsAdd: React.FC = () => {
                 <input
                     className="form-input"
                     type="submit"
-                    disabled={addLoading}
-                    value={addLoading ? 'загрузка...' : 'Добавить'}
+                    disabled={add === true}
+                    value={add === true ? 'загрузка...' : 'Добавить'}
                 />
             </div>
         </form>

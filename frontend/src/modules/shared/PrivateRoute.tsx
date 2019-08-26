@@ -1,7 +1,6 @@
 import React from "react";
 import {Redirect, Route} from "react-router";
-import {isAuthOk} from "../helpers/keep-token";
-
+import {isAuthOk} from "../../utils/helpers/keep-token";
 
 
 function PrivateRoute({ component: Component, ...rest }: any) {

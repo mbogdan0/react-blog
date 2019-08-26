@@ -3,13 +3,11 @@ import {Hashtag} from "../../../interfaces/hashtag";
 import dayjs from 'dayjs';
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {deleteHashtag} from "../../../store/admin/actions";
+import {deleteHashtag} from "../../../store/hashtags/actions";
 
 
-const AdminHashTahItem = ({data}: {data: Hashtag}) => {
-
+const AdminHashTagItem = ({data}: {data: Hashtag}) => {
     const dispatch = useDispatch();
-
     const onDelete = (id: any) => {
         dispatch(deleteHashtag(id));
     };
@@ -24,7 +22,7 @@ const AdminHashTahItem = ({data}: {data: Hashtag}) => {
             </div>
 
             <div className="entries">
-                записей: 0
+                записей: {data.photos}
             </div>
             <div className="date-add">
                 (добавлено {dayjs(data.date).format('HH:mm, DD MMM YYYY')})
@@ -41,4 +39,4 @@ const AdminHashTahItem = ({data}: {data: Hashtag}) => {
     )
 };
 
-export default AdminHashTahItem;
+export default AdminHashTagItem;

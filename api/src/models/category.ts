@@ -4,6 +4,7 @@ import * as mongoose from 'mongoose';
 
 export interface ICategory {
     name: string;
+    photos?: mongoose.Schema.Types.ObjectId[];
 }
 
 const CategorySchema = new Schema({
@@ -12,7 +13,13 @@ const CategorySchema = new Schema({
         required: true,
         unique: true,
         index: true
-    }
+    },
+    photos: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Photo'
+        }
+    ],
 });
 
 

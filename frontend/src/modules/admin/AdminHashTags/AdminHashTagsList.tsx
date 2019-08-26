@@ -1,24 +1,28 @@
 import React, {useEffect} from "react";
-import {getAdminHashtags} from "../../../store/selectors";
 import {useDispatch, useSelector} from "react-redux";
-import {loadHashtags} from "../../../store/admin/actions";
-import AdminHashTahItem from "./AdminHashTagItem";
+import AdminHashTagItem from "./AdminHashTagItem";
+import {Hashtag} from "../../../interfaces/hashtag";
+import {getHashtagsState} from "../../../store/selectors";
+import {loadHashtags} from "../../../store/hashtags/actions";
+import LoadingText from "../../shared/LoadingText";
+
 
 const AdminHashTagsList: React.FC = () => {
-
-    const {data, deleteError} = useSelector(getAdminHashtags);
+    const {load: {data, status}} = useSelector(getHashtagsState);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(loadHashtags());
     }, []);
 
-    const list = data.map(item => <AdminHashTahItem data={item} key={item._id} />)
+    const list = data.map((item: Hashtag) => <AdminHashTagItem data={item} key={item._id} />);
 
     return (
         <>
-            {deleteError ? <div className="error-delete">Ошибка удаления: {deleteError}</div> : null}
-            <div>{list.length ? list : 'Еще не добавлено ни одного тэга'}</div>
+            <LoadingText status={status}/>
+            {(status === null) && <>
+                {list.length ? list : 'Еще не добавлено ни одного тэга'}
+            </>}
         </>
     )
 };

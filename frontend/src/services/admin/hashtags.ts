@@ -2,7 +2,6 @@ import {ApiResponse} from "../../interfaces/api.interface";
 import {$delete, $get, $post} from "../../utils/helpers/fetch";
 import {URLS} from "../api.constants";
 import {Hashtag} from "../../interfaces/hashtag";
-import {async} from "q";
 
 export const adminAddHashTag = async (payload: {tag: string}): Promise<boolean>  => {
     let post: ApiResponse<any> = await $post(URLS.HASHTAGS, payload);

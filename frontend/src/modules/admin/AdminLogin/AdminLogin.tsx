@@ -1,23 +1,31 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {getAdminLoginForm} from "../../../store/selectors";
-import {makeLogin} from "../../../store/admin/actions";
-import AdminLoginStatus from "./AdminLoginStatus";
-
+import {getAdminLoginForm, getAdminUser} from "../../../store/selectors";
+import {makeLoginAsync} from "../../../store/admin/actions";
+import LoadingText from "../../shared/LoadingText";
+import {RouteComponentProps, withRouter} from "react-router";
 import './AdminLogin.scss';
 
 
-const AdminLogin: React.FC = () => {
+
+const AdminLogin: React.FC<RouteComponentProps> = ({history}) => {
 
     const [form, setForm] = useState({username: 'julia', password: 'PO09234lwEr'});
 
-    const {isLoginLoading} = useSelector(getAdminLoginForm);
+    const status = useSelector(getAdminLoginForm);
+    const user = useSelector(getAdminUser);
     const dispatch = useDispatch();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        dispatch(makeLogin(form));
+        dispatch(makeLoginAsync(form));
     };
+
+    useEffect(() => {
+        if (user && user.token) {
+            history.push('/admin/main');
+        }
+    }, [user, history]);
 
     const handleChange = (name: string, value: string) => {
         setForm(prevState => ({
@@ -26,9 +34,11 @@ const AdminLogin: React.FC = () => {
         }));
     };
 
+    // const redirect = user && !!user.token && <Redirect to="/admin/main" />;
+
     return (
         <form onSubmit={handleSubmit} className="admin-login">
-            <AdminLoginStatus />
+            <LoadingText status={status} />
             <div className="field-input">
                 <input
                     className="form-input"
@@ -51,12 +61,12 @@ const AdminLogin: React.FC = () => {
                 <input
                     className="form-input"
                     type="submit"
-                    disabled={isLoginLoading}
-                    value={isLoginLoading ? 'загрузка...' : 'Войти'}
+                    disabled={status === true}
+                    value={status === true ? 'загрузка...' : 'Войти'}
                 />
             </div>
         </form>
     );
 };
 
-export default AdminLogin;
+export default withRouter(AdminLogin);

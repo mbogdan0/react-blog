@@ -1,0 +1,21 @@
+
+.loading-component {
+  background: #EDEDED;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  .yunko {
+    margin-top: 25vh;
+    color: white;
+    font-size: 13vw;
+    text-align: center;
+  }
+
+  .describe-yunko {
+    text-transform: uppercase;
+    color: white;
+    font-size: 16px;
+  }
+
+}

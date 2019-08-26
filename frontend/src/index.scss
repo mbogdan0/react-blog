@@ -1,5 +1,9 @@
 @import "./constants.scss";
 
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -20,6 +24,11 @@ input.form-input[type=text], input.form-input[type=password] {
 input.form-input[type=button], input.form-input[type=submit] {
   padding: 4px 10px;
   font-size: 16px;
+}
+
+input.delete-btn {
+  color: red;
+  margin: 0 10px;
 }
 
 input.form-input[type=file] {
@@ -51,4 +60,16 @@ span.link {
 
 .smaller {
   font-size: .9em;
+}
+
+.loading-text-error {
+  color: red;
+  padding: 4px 0;
+  text-align: center;
+}
+
+.loading-text-loading {
+  color: grey;
+  padding: 4px 0;
+  text-align: center;
 }

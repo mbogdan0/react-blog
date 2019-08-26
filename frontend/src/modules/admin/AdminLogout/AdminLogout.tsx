@@ -1,20 +1,18 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {Redirect} from "react-router";
-import {makeLogout} from "../../../store/admin/actions";
+import {AdminActionType} from "../../../store/admin/types";
 
 const AdminLogout: React.FC = () => {
-
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(makeLogout());
-    });
+        dispatch({ type: AdminActionType.MAKE_LOGOUT });
+    }, []);
 
     return (
         <Redirect to="/" />
     );
 };
-
 
 export default AdminLogout;

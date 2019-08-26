@@ -1,5 +1,6 @@
 import React from "react";
 import AdminUploadPicForm from "./AdminUploadPicForm";
+import AdminPicList from "../AdminPicList/AdminPicList";
 
 import "./AdminUploadPic.scss";
 
@@ -7,9 +8,10 @@ const AdminUploadPic: React.FC = () => {
 
 
     return (
-        <div>
+        <>
             <AdminUploadPicForm />
-        </div>
+            <AdminPicList />
+        </>
     );
 
 };

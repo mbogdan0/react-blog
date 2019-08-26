@@ -1,10 +1,24 @@
 import {applyMiddleware, createStore} from 'redux';
-import rootReducer from "./reducers";
 import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from "./rootSaga";
+import { createBrowserHistory } from 'history';
+import { routerMiddleware } from 'connected-react-router';
+import createRootReducer from './reducers';
+
+
+const sagaMiddleware = createSagaMiddleware();
+export const history = createBrowserHistory();
 
 
 export default createStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunk))
+        createRootReducer(history),
+        composeWithDevTools(
+            applyMiddleware(
+                routerMiddleware(history), // for dispatching history actions
+                sagaMiddleware
+            ),
+        ),
 );
+
+sagaMiddleware.run(rootSaga);

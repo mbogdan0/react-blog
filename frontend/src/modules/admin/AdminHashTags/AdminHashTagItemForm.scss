@@ -1,0 +1,16 @@
+
+.admin-hashtag-item-form {
+  padding: 1px 10px;
+  background: transparent;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.hash-tags-list-form {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+}

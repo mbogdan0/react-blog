@@ -1,0 +1,19 @@
+.admin-photos-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item-picture {
+  padding: 6px;
+  border: 1px solid transparent;
+  margin: 4px;
+  &:hover {
+    border: 1px solid lightgray;
+  }
+  .category-name {
+    text-align: center;
+    font-size: .9em;
+    color: grey;
+  }
+}

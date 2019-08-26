@@ -18,10 +18,11 @@ export const __seed = async() => {
 };
 
 const seedCategories = () => {
-    const categories = ['фешн', 'портрет', 'реклама', 'пейзажи', 'свадьба'];
+    const categories = ['фешн', 'портрет', 'реклама', 'тревел', 'свадьба', 'другое'];
     for (let i=0; i<categories.length; i++) {
         new CategoryModel(<ICategory>{
-            name: categories[i]
+            name: categories[i],
+            photos: []
         }).save().catch(() => {});
     }
 };
@@ -38,3 +39,19 @@ export const __cleanUpImages = async() => {
     const dir = path.join(__filename, '..', '..', 'uploads');
     console.log(fs.readdirSync(dir));
 };
+
+
+
+export const promiseUnlink = (path) => {
+    return new Promise((resolve, reject) => {
+        fs.unlink(path, (err) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(true);
+            }
+        });
+    });
+};
+
+

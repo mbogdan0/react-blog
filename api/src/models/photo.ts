@@ -8,6 +8,7 @@ export interface IPhoto {
     path: string;
     tinyPath: string;
     category: Types.ObjectId;
+    tags?: mongoose.Schema.Types.ObjectId[];
     size: number;
     date: Date;
 }
@@ -28,6 +29,12 @@ const PhotoSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category'
     },
+    tags: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Hashtag'
+        }
+    ],
     size: {
         type: Number
     },

@@ -1,26 +1,29 @@
 import React, {useEffect, useState} from "react";
-
 import "./AdminUploadPic.scss";
 import {useDispatch, useSelector} from "react-redux";
-import {getCategories} from "../../../store/admin/actions";
-import {getAdminCategories} from "../../../store/selectors";
-
+import {getCategoriesState} from "../../../store/selectors";
+import {Category} from "../../../interfaces/category";
+import {getCategories} from "../../../store/categories/actions";
 
 
 interface CategoryProps {
     onCategoryChange: (cat: string) => void;
-    preSelected?: string; // a default value (from server)
+    preSelected?: string | Category; // a default value (from server)
 }
 
 const AdminUploadPicCategory: React.FC<CategoryProps> = ( {onCategoryChange, preSelected} ) => {
-    const categories = useSelector(getAdminCategories);
+    const {data} = useSelector(getCategoriesState);
     const [selected, setSelected] = useState('0');
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getCategories());
         if (preSelected) {
-            setSelected(preSelected);
+            if (typeof preSelected === 'string') {
+                setSelected(preSelected);
+            } else {
+                setSelected(preSelected._id);
+            }
         }
     }, [preSelected]);
 
@@ -31,10 +34,13 @@ const AdminUploadPicCategory: React.FC<CategoryProps> = ( {onCategoryChange, pre
 
     return (
         <div className="field-input">
+            <div className="label-field">
+                Категория
+            </div>
             <select className="form-input"
                     value={selected}
                     onChange={e => handleChange(e.target.value)}>
-                {categories.map(item => <option key={item._id} value={item._id}>{item.name}</option>)}
+                {data.map((item: Category) => <option key={item._id} value={item._id}>{item.name}</option>)}
             </select>
         </div>
     );

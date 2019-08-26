@@ -1,4 +1,4 @@
-import WaitingComponent from "../components/WaitingComponent";
+import WaitingComponent from "../../modules/shared/WaitingComponent";
 import {getAdminAuth} from "../../store/selectors";
 import {useSelector} from "react-redux";
 import {lazy} from "react";

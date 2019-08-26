@@ -4,6 +4,7 @@ import * as mongoose from 'mongoose';
 
 export interface IHashtag {
     tag: string;
+    photos?: mongoose.Schema.Types.ObjectId[];
     date: Date;
 }
 
@@ -14,6 +15,12 @@ const HashtagSchema = new Schema({
         unique: true,
         index: true
     },
+    photos: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Photo'
+        }
+    ],
     date: {
         type: Date
     }

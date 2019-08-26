@@ -1,21 +1,31 @@
 import React, {lazy} from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import WaitingComponent from "../utils/components/WaitingComponent";
+import { Route } from "react-router-dom";
+import WaitingComponent from "./shared/WaitingComponent";
+import { ConnectedRouter } from 'connected-react-router'
+import {history} from '../store/store';
+import {Switch} from "react-router";
 
-const App = lazy(() => import("./app/App/App"));
 const Admin = lazy(() => import("./admin/Admin/Admin"));
+const App = lazy(() => {
+    return Promise.all([
+        import("./app/App/App"), // to show Loading component not less than 200ms
+        new Promise(resolve => setTimeout(resolve, 200))
+    ])
+        .then(([moduleExports]) => moduleExports);
+});
+
 
 export const AppRouter: React.FC = () => {
+    const mainRoutes = ['/', '/fashion', '/advs', '/travel', '/wedding', '/contacts'];
 
     return (
-        <Router>
-            <Route path="/" exact component={WaitingComponent(App)} />
-            <Route path="/admin" component={WaitingComponent(Admin)} />
-        </Router>
+        <ConnectedRouter history={history}>
+            <Switch>
+                <Route path={mainRoutes} exact component={WaitingComponent(App)} />
+                <Route path="/admin" component={WaitingComponent(Admin)} />
+            </Switch>
+        </ConnectedRouter>
+
     );
 };
-
-
-
-
 

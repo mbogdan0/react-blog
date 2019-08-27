@@ -3,6 +3,7 @@ import {takeEvery, put, call, cancelled, take, fork, cancel} from 'redux-saga/ef
 import {adminAuthService} from "../../services/admin/auth";
 import {AdminActionType, AdminUserState, FormAdminLogin} from "./types";
 import {delLSUser, setLSUser} from "../../utils/helpers/keep-token";
+import {push} from "connected-react-router";
 
 
 export function* loginFlowSaga() {
@@ -22,6 +23,7 @@ function* authorizeSaga(payload: FormAdminLogin) {
         const data: AdminUserState = yield call(adminAuthService, payload);
         yield put(makeLoginSuccess(data));
         yield setLSUser(data);
+        yield put(push('/admin/main'));
         return data;
     } catch (error) {
         yield put(makeLoginError(error.toString()));

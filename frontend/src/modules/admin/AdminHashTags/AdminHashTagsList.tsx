@@ -13,7 +13,7 @@ const AdminHashTagsList: React.FC = () => {
 
     useEffect(() => {
         dispatch(loadHashtags());
-    }, []);
+    }, [dispatch]);
 
     const list = data.map((item: Hashtag) => <AdminHashTagItem data={item} key={item._id} />);
 

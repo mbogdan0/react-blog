@@ -1,4 +1,4 @@
-import {AdminActionType, AdminActions, FormAdminLogin, AdminUserState} from "./types";
+import {AdminActionType, FormAdminLogin, AdminUserState, AdminActions} from "./types";
 
 
 
@@ -14,3 +14,7 @@ export const makeLoginError = (payload: string | null): AdminActions => {
         payload: { error: payload }
     }
 };
+
+export const makeLogout = (): AdminActions => ({
+    type: AdminActionType.MAKE_LOGOUT
+});

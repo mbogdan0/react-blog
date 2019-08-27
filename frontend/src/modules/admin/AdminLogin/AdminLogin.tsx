@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {getAdminLoginForm, getAdminUser} from "../../../store/selectors";
+import {getAdminLoginForm} from "../../../store/selectors";
 import {makeLoginAsync} from "../../../store/admin/actions";
 import LoadingText from "../../shared/LoadingText";
 import {RouteComponentProps, withRouter} from "react-router";
@@ -13,7 +13,6 @@ const AdminLogin: React.FC<RouteComponentProps> = ({history}) => {
     const [form, setForm] = useState({username: 'julia', password: 'PO09234lwEr'});
 
     const status = useSelector(getAdminLoginForm);
-    const user = useSelector(getAdminUser);
     const dispatch = useDispatch();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,11 +20,6 @@ const AdminLogin: React.FC<RouteComponentProps> = ({history}) => {
         dispatch(makeLoginAsync(form));
     };
 
-    useEffect(() => {
-        if (user && user.token) {
-            history.push('/admin/main');
-        }
-    }, [user, history]);
 
     const handleChange = (name: string, value: string) => {
         setForm(prevState => ({
@@ -33,8 +27,6 @@ const AdminLogin: React.FC<RouteComponentProps> = ({history}) => {
             [name]: value
         }));
     };
-
-    // const redirect = user && !!user.token && <Redirect to="/admin/main" />;
 
     return (
         <form onSubmit={handleSubmit} className="admin-login">

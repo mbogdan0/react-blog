@@ -5,6 +5,7 @@ import {categoriesReducer} from "./categories/reducers";
 import {photosReducer} from "./photos/reducers";
 import {connectRouter} from 'connected-react-router';
 import { History } from 'history';
+import {catalogReducer} from "./catalog/reducers";
 
 
 const rootReducer = (history: History) => combineReducers({
@@ -12,10 +13,11 @@ const rootReducer = (history: History) => combineReducers({
     hashtags: hashtagReducer,
     categories: categoriesReducer,
     photos: photosReducer,
+    catalog: catalogReducer,
     router: connectRouter(history)
 });
 
 
-export type AppState = ReturnType< ReturnType<typeof rootReducer> >; // magic
+export type AppState = ReturnType< ReturnType<typeof rootReducer> >;
 
 export default rootReducer;

@@ -75,7 +75,3 @@ export const deleteOnePhotoError = (data: string | null): PhotosActions => ({
 export const deleteOnePhotoSuccess = (): PhotosActions => ({
     type: PhotosActionType.DELETE_ONE_PHOTO_SUCCESS
 });
-
-export const deleteOnePhotoRedirect = (): PhotosActions => ({
-    type: PhotosActionType.DELETE_ONE_PHOTO_REDIRECT
-});

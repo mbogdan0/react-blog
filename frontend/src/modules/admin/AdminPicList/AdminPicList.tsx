@@ -12,7 +12,7 @@ const AdminPicList: React.FC = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(loadAllPhotos());
-    }, []);
+    }, [dispatch]);
 
     const list = data && data.map((item: Picture) => <AdminPicItem key={item._id} data={item}/>);
 

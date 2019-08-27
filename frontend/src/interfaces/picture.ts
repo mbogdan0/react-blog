@@ -13,3 +13,11 @@ export interface Picture {
     size: number;
     date: string;
 }
+
+export interface PictureLight {
+    photoPosition: string;
+    path: string;
+    tinyPath: string;
+    category: any;
+    short_id: number;
+}

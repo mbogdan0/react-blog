@@ -25,7 +25,7 @@ const AdminUploadPicCategory: React.FC<CategoryProps> = ( {onCategoryChange, pre
                 setSelected(preSelected._id);
             }
         }
-    }, [preSelected]);
+    }, [preSelected, dispatch]);
 
     const handleChange = (val: string) => {
         setSelected(val);

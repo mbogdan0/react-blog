@@ -4,10 +4,15 @@ import {StateHashtags} from "./hashtags/types";
 import {StateCategory} from "./categories/types";
 import {StatePhotos} from "./photos/types";
 import {AdminState} from "./admin/types";
+import {RouterState} from "connected-react-router";
+import {CatalogState} from "./catalog/types";
 
 
 
 export const getAdminState = (store: AppState): AdminState => store.admin;
+export const getRouter = (store: AppState): RouterState => store.router;
+
+export const getCatalog = (store: AppState): CatalogState => store.catalog;
 
 export const getHashtagsState = (store: AppState): StateHashtags => store.hashtags;
 export const getCategoriesState = (store: AppState): StateCategory => store.categories;

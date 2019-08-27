@@ -19,13 +19,17 @@ export const __seed = async() => {
 
 const seedCategories = () => {
     const categories = ['фешн', 'портрет', 'реклама', 'тревел', 'свадьба', 'другое'];
+    const urlName = ['/fashion', '/', '/advs', '/travel', '/wedding', '/other'];
+
     for (let i=0; i<categories.length; i++) {
         new CategoryModel(<ICategory>{
             name: categories[i],
+            urlName: urlName[i],
             photos: []
         }).save().catch(() => {});
     }
 };
+
 
 
 export const __cleanUpImages = async() => {

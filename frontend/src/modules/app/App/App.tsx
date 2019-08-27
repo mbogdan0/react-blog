@@ -1,20 +1,9 @@
-import React, {useEffect} from 'react';
-import './App.scss';
+import React from 'react';
 import AppMenu from "../AppMenu/AppMenu";
 import AppMain from "../AppMain/AppMain";
-import {RouteComponentProps, withRouter} from "react-router";
-import {LocationState} from "history";
+import './App.scss';
 
-
-
-const App: React.FC<RouteComponentProps> = ({location, history}) => {
-
-
-    //console.log(location)
-
-    useEffect(() => history.listen((location) => {
-            console.log(location);
-    }), [history, location]);
+const App: React.FC = () => {
 
     return (
         <div className="App">
@@ -24,4 +13,4 @@ const App: React.FC<RouteComponentProps> = ({location, history}) => {
     );
 };
 
-export default withRouter(App);
+export default App;

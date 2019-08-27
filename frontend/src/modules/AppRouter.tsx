@@ -9,7 +9,7 @@ const Admin = lazy(() => import("./admin/Admin/Admin"));
 const App = lazy(() => {
     return Promise.all([
         import("./app/App/App"), // to show Loading component not less than 200ms
-        new Promise(resolve => setTimeout(resolve, 200))
+        new Promise(resolve => setTimeout(resolve, 100))
     ])
         .then(([moduleExports]) => moduleExports);
 });

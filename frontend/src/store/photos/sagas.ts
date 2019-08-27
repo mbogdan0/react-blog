@@ -8,6 +8,7 @@ import {
     uploadPhotoSuccess
 } from "./actions";
 import {PhotosActionType} from "./types";
+import {push} from "connected-react-router";
 
 
 function* uploadPhotoSaga(payload: any) {
@@ -52,6 +53,7 @@ function* deleteOnePhotoSaga(obj: any) {
     try {
         yield call(adminDeleteOnePhoto, obj.payload);
         yield put(deleteOnePhotoSuccess());
+        yield put(push('/admin/main'));
     } catch (e) {
         yield put(deleteOnePhotoError(e.toString()));
     }

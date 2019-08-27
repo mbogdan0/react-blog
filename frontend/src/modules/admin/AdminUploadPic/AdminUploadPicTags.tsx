@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import "./AdminUploadPic.scss";
 import {useDispatch, useSelector} from "react-redux";
 import {getHashtagsState} from "../../../store/selectors";
@@ -19,7 +19,7 @@ const AdminUploadPicTags: React.FC<CategoryProps> = ( {onTagsChange, preSelected
 
     useEffect(() => {
         dispatch(loadHashtags());
-    }, []);
+    }, [dispatch]);
 
     const handleChangeChild = (id: string, val: boolean) => {
         const selectedTags = [...preSelected];

@@ -147,15 +147,8 @@ export const photosReducer = (state = initialState, action: PhotosActions): Stat
         case PhotosActionType.DELETE_ONE_PHOTO_SUCCESS: {
             return {
                 ...state,
-                deletingPhoto: 1
-            };
-        }
-
-        case PhotosActionType.DELETE_ONE_PHOTO_REDIRECT: {
-            return {
-                ...state,
                 deletingPhoto: null
-            }
+            };
         }
 
         default:

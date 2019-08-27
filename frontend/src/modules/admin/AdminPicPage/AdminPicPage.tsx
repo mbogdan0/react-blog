@@ -20,7 +20,7 @@ const AdminPicPage: React.FC<RouteComponentProps<MatchRouter>> = ({match}) => {
 
     useEffect(() => {
         dispatch(loadDetailPage(id));
-    }, [id]);
+    }, [id, dispatch]);
 
     return (
         <>
@@ -30,7 +30,7 @@ const AdminPicPage: React.FC<RouteComponentProps<MatchRouter>> = ({match}) => {
                 <AdminPicPageForm data={data} />
 
                 <div className="photo">
-                    <img src={imgUrl + data.path} />
+                    <img src={imgUrl + data.path} alt="" />
                 </div>
             </div>}
         </>

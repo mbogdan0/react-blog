@@ -15,6 +15,6 @@ export const URLS = {
 
     CATEGORY: `${API_URL}/admin/categories`,
 
-    USER_MAIN_PAGE_PHOTOS: `${API_URL}/user/photos`,
+    USER_MAIN_PAGE_PHOTOS: `${API_URL}/main/photos`,
 };
 

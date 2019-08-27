@@ -15,7 +15,7 @@ const AdminPicItem: React.FC<AdminPicItemProps> = ({data}) => {
     return (
         <div className="item-picture">
             <NavLink to={'/admin/photo/' + data._id}>
-                <img src={imgUrl + data.tinyPath} />
+                <img src={imgUrl + data.tinyPath} alt="" />
             </NavLink>
             {categoryName}
         </div>

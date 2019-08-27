@@ -15,7 +15,7 @@ export default createStore(
         createRootReducer(history),
         composeWithDevTools(
             applyMiddleware(
-                routerMiddleware(history), // for dispatching history actions
+                routerMiddleware(history),
                 sagaMiddleware
             ),
         ),

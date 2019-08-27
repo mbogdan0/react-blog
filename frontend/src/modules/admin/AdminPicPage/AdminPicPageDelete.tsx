@@ -1,18 +1,15 @@
 import {Picture} from "../../../interfaces/picture";
-import React, {useEffect} from "react";
+import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {deleteOnePhoto, deleteOnePhotoRedirect} from "../../../store/photos/actions";
+import {deleteOnePhoto} from "../../../store/photos/actions";
 import {getAdmonPhotoDeleting} from "../../../store/selectors";
 import LoadingText from "../../shared/LoadingText";
-import {RouteComponentProps, withRouter} from "react-router";
-
 
 interface PicPageFormProps {
     data: Picture;
 }
 
-const AdminPicPageDelete: React.FC<RouteComponentProps & PicPageFormProps> = ({history, data}) => {
-
+const AdminPicPageDelete: React.FC<PicPageFormProps> = ({data}) => {
     const dispatch = useDispatch();
     const status = useSelector(getAdmonPhotoDeleting);
     const handleDelete = () => {
@@ -22,23 +19,17 @@ const AdminPicPageDelete: React.FC<RouteComponentProps & PicPageFormProps> = ({h
         dispatch(deleteOnePhoto(data._id));
     };
 
-    useEffect(() => {
-        if (status === 1) {
-            history.push('/admin/main');
-            dispatch(deleteOnePhotoRedirect());
-        }
-    }, [status]);
-
-    return (<>
+    return (
+        <>
             <input
                 type="button"
                 className="form-input delete-btn"
                 onClick={handleDelete}
                 value="удалить" />
-        <LoadingText status={status}/>
+            <LoadingText status={status}/>
         </>
     );
 
 };
 
-export default withRouter(AdminPicPageDelete);
+export default AdminPicPageDelete;
